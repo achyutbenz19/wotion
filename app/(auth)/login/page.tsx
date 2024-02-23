@@ -17,6 +17,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { actionLoginUser } from "@/lib/serverActions/auth-actions";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -32,7 +33,15 @@ const LoginPage = () => {
 
   const onSubmit: SubmitHandler<z.infer<typeof FormSchema>> = async (
     formData,
-  ) => {};
+  ) => {
+    const { error } = await actionLoginUser(formData);
+    if (error) {
+      form.reset();
+      setSubmitError(error.message);
+    } else {
+      router.replace("/");
+    }
+  };
 
   return (
     <Form {...form}>

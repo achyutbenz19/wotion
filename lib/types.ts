@@ -27,3 +27,20 @@ export type NextApiResponseServerIo = NextApiResponse & {
     };
   };
 };
+
+export const SignUpFormSchema = z
+  .object({
+    email: z.string().describe("Email").email({ message: "Invalid Email" }),
+    password: z
+      .string()
+      .describe("Password")
+      .min(6, "Password must be atleast 6 characters."),
+    confirmPassword: z
+      .string()
+      .describe("Confirm Password")
+      .min(6, "Password must be atleast 6 characters."),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords dont match",
+    path: ["confirmPassword"],
+  });

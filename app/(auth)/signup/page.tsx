@@ -19,6 +19,7 @@ import { MailCheck } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { actionSignupUser } from "@/lib/serverActions/auth-actions";
 
 const page = () => {
   const router = useRouter();
@@ -54,7 +55,15 @@ const page = () => {
 
   const onSubmit: SubmitHandler<z.infer<typeof FormSchema>> = async (
     formData,
-  ) => {};
+  ) => {
+    const { error } = await actionSignupUser(formData);
+    if (error) {
+      setErrorMessage(error.message);
+      form.reset();
+    } else {
+      setConfirmation(true);
+    }
+  };
 
   return (
     <Form {...form}>
@@ -137,7 +146,7 @@ const page = () => {
         />
         {errorMessage && <FormMessage>{errorMessage}</FormMessage>}
         <Button type="submit" className="w-full p-6" disabled={isLoading}>
-          {!isLoading ? "Create Account" : "Login"}
+          {!isLoading ? "Create Account" : "Loading"}
         </Button>
         <span className="self-container">
           Already have an account?{" "}

@@ -28,7 +28,7 @@ const TitleSection: React.FC<TitleSectionProps> = ({
           text-sm
           dark:bg-gradient-to-r
           dark:from-primary
-          dark:to-red-300
+          dark:to-red-200
         "
         >
           <div

@@ -1,7 +1,7 @@
-import { workspace } from '@/lib/supabase/supabase.types';
-import { Briefcase } from 'lucide-react';
-import Link from 'next/link';
-import React from 'react';
+import { workspace } from "@/lib/supabase/supabase.types";
+import { Briefcase } from "lucide-react";
+import Link from "next/link";
+import React from "react";
 
 interface SelectedWorkspaceProps {
   workspace: workspace;
@@ -12,7 +12,6 @@ const SelectedWorkspace: React.FC<SelectedWorkspaceProps> = ({
   workspace,
   onClick,
 }) => {
-
   return (
     <Link
       href={`/dashboard/${workspace.id}`}
@@ -31,10 +30,7 @@ const SelectedWorkspace: React.FC<SelectedWorkspaceProps> = ({
       items-center 
       my-2"
     >
-      <Briefcase
-        width={20}
-        height={20}
-      />
+      <Briefcase width={20} height={20} />
       <div className="flex flex-col">
         <p className="text-lg w-[170px] overflow-hidden overflow-ellipsis whitespace-nowrap">
           {workspace.title}

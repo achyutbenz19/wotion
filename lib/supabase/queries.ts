@@ -64,7 +64,7 @@ export const getFolderes = async (workspaceId: string) => {
   }
 };
 
-const getPrivateWorkspaces = async (userId: string) => {
+export const getPrivateWorkspaces = async (userId: string) => {
   if (!userId) return [];
 
   const privateWorkspaces = (await db

@@ -15,6 +15,13 @@
       "when": 1708792300728,
       "tag": "0001_amused_randall",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1708806132775,
+      "tag": "0002_amusing_cannonball",
+      "breakpoints": true
     }
   ]
 }

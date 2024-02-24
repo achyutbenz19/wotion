@@ -26,7 +26,7 @@ const Sidebar = async ({ params, className }: SidebarProps) => {
   );
 
   if (subscriptionError || folderError) redirect("/dashboard");
-
+ 
   return <div>Sidebar</div>;
 };
 

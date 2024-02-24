@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import TitleSection from "@/components/landing/title-section";
 import { Button } from "@/components/ui/button";
 import { InfiniteMovingCards } from "@/components/ui/moving-cards";
@@ -39,7 +39,7 @@ export default function HomePage() {
           </Button>
         </div>
       </div>
-      <div className="h-full mt-3 px-2 border rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
+      <div className="h-full mt-3 px-2 rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
         <InfiniteMovingCards
           items={testimonials}
           direction="right"

@@ -7,12 +7,15 @@ export async function middleware(req: NextRequest) {
     const {
         data: { session },
     } = await supabase.auth.getSession();
+
     if (req.nextUrl.pathname.includes("/dashboard")) {
         if (!session) {
             return NextResponse.redirect(new URL("/login", req.url));
         }
     }
+
     const emailLinkError = "Email link is invalid or has expired";
+
     if (
         req.nextUrl.searchParams.get("error_description") === emailLinkError &&
         req.nextUrl.pathname !== "/signup"
@@ -26,6 +29,7 @@ export async function middleware(req: NextRequest) {
             ),
         );
     }
+
     if (["/login", "/signup"].includes(req.nextUrl.pathname)) {
         if (session) {
             return NextResponse.redirect(new URL("/dashboard", req.url));

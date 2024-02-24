@@ -1,7 +1,12 @@
+"use client"
 import TitleSection from "@/components/landing/title-section";
 import { Button } from "@/components/ui/button";
+import { InfiniteMovingCards } from "@/components/ui/moving-cards";
+import { testimonials } from "@/lib/constants/testimonials";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
+  const router = useRouter();
   return (
     <section>
       <div className="overflow-hidden px-4 sm:px-6 mt-10 sm:flex sm:flex-col md:justify-center md:items-center">
@@ -28,10 +33,18 @@ export default function HomePage() {
             text-2xl
             bg-background
           "
+            onClick={() => router.push("/dashboard")}
           >
             Get Wotion Free
           </Button>
         </div>
+      </div>
+      <div className="h-full mt-3 px-2 border rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
+        <InfiniteMovingCards
+          items={testimonials}
+          direction="right"
+          speed="slow"
+        />
       </div>
     </section>
   );

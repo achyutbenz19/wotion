@@ -17,7 +17,7 @@ const Heading = () => {
       </h3>
       <Button>
         Enter Wotion
-        <ArrowRight  className="w-4 h-4 ml-2" />
+        <ArrowRight className="w-4 h-4 ml-2" />
       </Button>
     </div>
   );

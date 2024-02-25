@@ -1,4 +1,4 @@
-// import { Footer } from "./_components/footer";
+import { Footer } from "./_components/footer";
 import Heading from "./_components/heading";
 import { Hero } from "./_components/hero";
 
@@ -9,7 +9,7 @@ const LandingPage = () => {
         <Heading />
         <Hero />
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

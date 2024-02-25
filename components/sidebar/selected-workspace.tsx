@@ -30,7 +30,6 @@ const SelectedWorkspace: React.FC<SelectedWorkspaceProps> = ({
       items-center 
       my-2"
     >
-      <Briefcase width={20} height={20} />
       <div className="flex flex-col">
         <p className="text-lg w-[170px] overflow-hidden overflow-ellipsis whitespace-nowrap">
           {workspace.title}

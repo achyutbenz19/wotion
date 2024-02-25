@@ -17,7 +17,7 @@ import { Lock, Plus, Share } from "lucide-react";
 import { Button } from "../ui/button";
 import { v4 } from "uuid";
 import { addCollaborators, createWorkspace } from "@/lib/supabase/queries";
-// import CollaboratorSearch from './collaborator-search';
+import CollaboratorSearch from "./collaborator-search";
 import { ScrollArea } from "../ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useToast } from "../ui/use-toast";
@@ -71,7 +71,7 @@ const WorkspaceCreator = () => {
 
   return (
     <div className="flex gap-4 flex-col">
-      <div>
+      <div className="mt-2">
         <Label htmlFor="name" className="text-sm text-muted-foreground">
           Name
         </Label>
@@ -145,20 +145,17 @@ const WorkspaceCreator = () => {
       </>
       {permissions === "shared" && (
         <div>
-          {/* <CollaboratorSearch
+          <CollaboratorSearch
             existingCollaborators={collaborators}
             getCollaborator={(user) => {
               addCollaborator(user);
             }}
           >
-            <Button
-              type="button"
-              className="text-sm mt-4"
-            >
+            <Button type="button" className="text-sm mt-4">
               <Plus />
               Add Collaborators
             </Button>
-          </CollaboratorSearch> */}
+          </CollaboratorSearch>
           <div className="mt-4">
             <span className="text-sm text-muted-foreground">
               Collaborators {collaborators.length || ""}

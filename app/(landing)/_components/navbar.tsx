@@ -16,7 +16,9 @@ const Navbar = () => {
     >
       <div className="flex flex-row">
         <Logo />
-        <span className="font-semibold hidden md:flex ml-2 mt-1">Wotion</span>
+        <span className="font-semibold hidden md:flex ml-2 mt-0.5 lg:mt-1">
+          Wotion
+        </span>
       </div>
       <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
         <ModeToggle />

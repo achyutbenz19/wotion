@@ -24,3 +24,10 @@ export type ConfirmModalProps = {
   children: React.ReactNode;
   onConfirm: () => void;
 }
+
+export type SearchStore = {
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  toggle: () => void;
+};

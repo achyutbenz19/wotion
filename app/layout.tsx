@@ -42,7 +42,7 @@ export default function RootLayout({
             storageKey="wotion-theme"
           >
             {children}
-            <Toaster />
+            <Toaster position="bottom-center"/>
           </ThemeProvider>
         </ConvexClientProvider>
       </body>

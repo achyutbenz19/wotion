@@ -42,3 +42,11 @@ export type NavbarProps = {
 export type TitleProps = {
   initialData: Doc<"documents">;
 };
+
+export type BannerProps = {
+  documentId: Id<"documents">;
+};
+
+export type MenuProps = {
+  documentId: Id<"documents">;
+};

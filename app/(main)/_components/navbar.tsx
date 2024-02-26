@@ -6,6 +6,8 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { NavbarProps } from "@/types";
 import { Title } from "./title";
+import { Banner } from "./banner";
+import { Menu } from "./menu";
 
 export const Navbar = ({ isCollapsed, onReset }: NavbarProps) => {
   const params = useParams();
@@ -42,13 +44,11 @@ export const Navbar = ({ isCollapsed, onReset }: NavbarProps) => {
           <Title initialData={document} />
           <div className="flex items-center gap-x-2">
             {/* <Publish initialData={document} /> */}
-            {/* <Menu documentId={document._id} /> */}
+            <Menu documentId={document._id} />
           </div>
         </div>
       </nav>
-      {/* {document.isArchived && (
-        <Banner documentId={document._id} />
-      )} */}
+      {document.isArchieved && <Banner documentId={document._id} />}
     </>
   );
 };

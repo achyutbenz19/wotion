@@ -15,6 +15,7 @@ import Item from "./item";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
+import DocumentList from "./document-list";
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -134,6 +135,9 @@ const Navigation = () => {
           <Item onClick={() => {}} label="Search" icon={Search} isSearch />
           <Item onClick={() => {}} label="Settings" icon={Settings} />
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
+        </div>
+        <div className="mt-4">
+          <DocumentList />
         </div>
         <div
           onMouseDown={handleMouseDown}

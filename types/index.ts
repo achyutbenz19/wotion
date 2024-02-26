@@ -31,3 +31,5 @@ export type SearchStore = {
   onClose: () => void;
   toggle: () => void;
 };
+
+export type SettingStore = SearchStore;

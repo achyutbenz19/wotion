@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/alert-dialog";
 import { ConfirmModalProps } from "@/types";
 
-
 export const ConfirmModal = ({ children, onConfirm }: ConfirmModalProps) => {
   const handleConfirm = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,

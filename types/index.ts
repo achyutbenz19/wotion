@@ -23,7 +23,7 @@ export type DocumentListProps = {
 export type ConfirmModalProps = {
   children: React.ReactNode;
   onConfirm: () => void;
-}
+};
 
 export type SearchStore = {
   isOpen: boolean;

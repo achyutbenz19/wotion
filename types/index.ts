@@ -33,3 +33,8 @@ export type SearchStore = {
 };
 
 export type SettingStore = SearchStore;
+
+export type NavbarProps = {
+  isCollapsed: boolean;
+  onReset: () => void;
+};

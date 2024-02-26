@@ -1,20 +1,13 @@
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Skeleton } from "@/components/ui/skeleton";
 import { api } from "@/convex/_generated/api";
 import { cn } from "@/lib/utils";
 import { ItemProps } from "@/types";
 import { useUser } from "@clerk/clerk-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
 import { useMutation } from "convex/react";
 import {
   ChevronDownIcon,
   ChevronRightIcon,
-  ChevronUpIcon,
   MoreHorizontal,
   Plus,
   Trash,
@@ -39,6 +32,7 @@ const Item = ({
   const { user } = useUser();
   const create = useMutation(api.documents.create);
   const ChevronIcon = expanded ? ChevronDownIcon : ChevronRightIcon;
+  const archive = useMutation(api.documents.archieve)
 
   const handleExpand = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
@@ -59,6 +53,25 @@ const Item = ({
           loading: "Creating a new note...",
           error: "Error creating your note.",
           success: "Successfully created your note!",
+        });
+      },
+    );
+  };
+
+  const onArchive = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
+    if (!id) return;
+    const response = archive({ id }).then(
+      (documentId) => {
+        if (!expanded) {
+          onExpand?.();
+        }
+        router.push(`/documents/${documentId}`);
+
+        toast.promise(response, {
+          loading: "Moving to Trash...",
+          error: "Failed to move note.",
+          success: "Successfully moved your note!",
         });
       },
     );
@@ -98,7 +111,7 @@ const Item = ({
       )}
       {!!id && (
         <div className="ml-auto flex items-center gap-x-2">
-          {/* <DropdownMenu>
+          <DropdownMenu>
             <DropdownMenuTrigger onClick={(e) => e.stopPropagation()} asChild>
               <div
                 role="button"
@@ -113,7 +126,7 @@ const Item = ({
               side="right"
               forceMount
             >
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={onArchive}>
                 <Trash className="h-4 w-4 mr-2" />
                 Delete
               </DropdownMenuItem>
@@ -122,7 +135,7 @@ const Item = ({
                 Last edited by: {user?.fullName}
               </div>
             </DropdownMenuContent>
-          </DropdownMenu> */}
+          </DropdownMenu>
           <div
             role="button"
             onClick={onCreate}

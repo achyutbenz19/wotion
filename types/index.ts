@@ -38,3 +38,7 @@ export type NavbarProps = {
   isCollapsed: boolean;
   onReset: () => void;
 };
+
+export type TitleProps = {
+  initialData: Doc<"documents">;
+};

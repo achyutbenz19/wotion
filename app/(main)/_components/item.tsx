@@ -1,4 +1,10 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Skeleton } from "@/components/ui/skeleton";
 import { api } from "@/convex/_generated/api";
 import { cn } from "@/lib/utils";
@@ -32,7 +38,7 @@ const Item = ({
   const { user } = useUser();
   const create = useMutation(api.documents.create);
   const ChevronIcon = expanded ? ChevronDownIcon : ChevronRightIcon;
-  const archive = useMutation(api.documents.archieve)
+  const archive = useMutation(api.documents.archieve);
 
   const handleExpand = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
@@ -61,20 +67,18 @@ const Item = ({
   const onArchive = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
     if (!id) return;
-    const response = archive({ id }).then(
-      (documentId) => {
-        if (!expanded) {
-          onExpand?.();
-        }
-        router.push(`/documents/${documentId}`);
+    const response = archive({ id }).then((documentId) => {
+      if (!expanded) {
+        onExpand?.();
+      }
+      router.push(`/documents/${documentId}`);
 
-        toast.promise(response, {
-          loading: "Moving to Trash...",
-          error: "Failed to move note.",
-          success: "Successfully moved your note!",
-        });
-      },
-    );
+      toast.promise(response, {
+        loading: "Moving to Trash...",
+        error: "Failed to move note.",
+        success: "Successfully moved your note!",
+      });
+    });
   };
 
   return (

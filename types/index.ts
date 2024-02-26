@@ -50,3 +50,14 @@ export type BannerProps = {
 export type MenuProps = {
   documentId: Id<"documents">;
 };
+
+export type ToolbarProps = {
+  initialData: Doc<"documents">;
+  preview?: boolean;
+};
+
+export type IconPickerProps = {
+  onChange: (icon: string) => void;
+  children: React.ReactNode;
+  asChild?: boolean;
+};

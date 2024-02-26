@@ -1,10 +1,14 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, MenuIcon } from "lucide-react";
+import { ChevronsLeft, MenuIcon, PlusCircle } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React, { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { UserItem } from "./user-item";
+import Item from "./item";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { toast } from "sonner";
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -14,6 +18,17 @@ const Navigation = () => {
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
+  const create = useMutation(api.documents.create);
+
+  const handleCreate = () => {
+    const response = create({ title: "Untitled" });
+
+    toast.promise(response, {
+      loading: "Creating a new note...",
+      error: "Error creating your note.",
+      success: "Successfully created your note!",
+    });
+  };
 
   useEffect(() => {
     if (isMobile) {
@@ -110,6 +125,7 @@ const Navigation = () => {
         </div>
         <div>
           <UserItem />
+          <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
         <div
           onMouseDown={handleMouseDown}

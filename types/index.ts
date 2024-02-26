@@ -19,3 +19,8 @@ export type DocumentListProps = {
   level?: number;
   data?: Doc<"documents">[];
 };
+
+export type ConfirmModalProps = {
+  children: React.ReactNode;
+  onConfirm: () => void;
+}

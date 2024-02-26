@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button";
 import { SignInButton } from "@clerk/clerk-react";
 import { useConvexAuth } from "convex/react";
 import { ArrowRight, Link } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Heading = () => {
+  const router = useRouter();
   const { isLoading, isAuthenticated } = useConvexAuth();
   return (
     <div className="max-w-3xl space-y-4">
@@ -21,15 +23,13 @@ const Heading = () => {
       </h3>
       {isLoading && (
         <div className="w-full items-center flex justify-center">
-          <Spinner size="lg"/>
+          <Spinner size="lg" />
         </div>
       )}
       {isAuthenticated && !isLoading && (
-        <Button asChild>
-          <Link href="/documents">
-            Enter Wotion
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Link>
+        <Button onClick={() => router.push("/documents")}>
+          Enter Wotion
+          <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
       )}
       {!isAuthenticated && !isLoading && (

@@ -42,10 +42,12 @@ const Navbar = () => {
           </>
         )}
         {isAuthenticated && !isLoading && (
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/documents">Enter Wotion</Link>
+          <div className="mr-1 flex flex-row">
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/documents">Enter Wotion</Link>
+            </Button>
             <UserButton afterSignOutUrl="/" />
-          </Button>
+          </div>
         )}
         <ModeToggle />
       </div>

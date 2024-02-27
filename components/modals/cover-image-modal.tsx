@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { Dialog, DialogContent, DialogHeader } from "../ui/dialog";
 import { useCoverImage } from "@/hooks/use-cover-image";

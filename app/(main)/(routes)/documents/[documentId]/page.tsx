@@ -13,14 +13,16 @@ const DocumentIdPage = ({
 }: {
   params: { documentId: Id<"documents"> };
 }) => {
-
-  const Editor = useMemo(() => dynamic(() => import("@/components/editor"), { ssr: false }) ,[]);
+  const Editor = useMemo(
+    () => dynamic(() => import("@/components/editor"), { ssr: false }),
+    [],
+  );
 
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId,
   });
 
-  const update = useMutation(api.documents.update)
+  const update = useMutation(api.documents.update);
 
   if (document === undefined) {
     return (
@@ -47,19 +49,16 @@ const DocumentIdPage = ({
   const onChange = (content: string) => {
     update({
       id: params.documentId,
-      content: content
-    })
-  }
+      content: content,
+    });
+  };
 
   return (
     <div className="pb-40">
       <Cover url={document.coverImage} />
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
         <Toolbar initialData={document} />
-        <Editor
-          onChange={onChange}
-          initialContent={document.content}
-        />
+        <Editor onChange={onChange} initialContent={document.content} />
       </div>
     </div>
   );

@@ -67,17 +67,13 @@ const Item = ({
   const onArchive = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
     if (!id) return;
-    const response = archive({ id }).then((documentId) => {
-      if (!expanded) {
-        onExpand?.();
-      }
-      router.push(`/documents/${documentId}`);
+    const response = archive({ id });
+    router.push(`/documents`);
 
-      toast.promise(response, {
-        loading: "Moving to Trash...",
-        error: "Failed to move note.",
-        success: "Successfully moved your note!",
-      });
+    toast.promise(response, {
+      loading: "Moving to Trash...",
+      error: "Failed to move note.",
+      success: "Successfully moved your note!",
     });
   };
 

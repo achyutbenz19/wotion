@@ -7,12 +7,15 @@ import { IconPicker } from "./emoji-picker";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import TextareaAutosize from "react-textarea-autosize";
+import { useCoverImage } from "@/hooks/use-cover-image";
 
 const Toolbar = ({ initialData, preview }: ToolbarProps) => {
   const update = useMutation(api.documents.update);
+  const removeIcon = useMutation(api.documents.removeIcon);
   const inputRef = useRef<ElementRef<"textarea">>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState(initialData.title);
+  const coverImage = useCoverImage();
 
   const onIconSelect = (icon: string) => {
     update({
@@ -47,6 +50,12 @@ const Toolbar = ({ initialData, preview }: ToolbarProps) => {
     }
   };
 
+  const onRemoveIcon = () => {
+    removeIcon({
+      id: initialData._id,
+    });
+  };
+
   return (
     <div className="pl-[54px] group relative">
       {!!initialData.icon && !preview && (
@@ -57,7 +66,7 @@ const Toolbar = ({ initialData, preview }: ToolbarProps) => {
             </p>
           </IconPicker>
           <Button
-            // onClick={onRemoveIcon}
+            onClick={onRemoveIcon}
             className="rounded-full opacity-0 group-hover/icon:opacity-100 transition text-muted-foreground text-xs"
             variant="outline"
             size="icon"
@@ -84,7 +93,7 @@ const Toolbar = ({ initialData, preview }: ToolbarProps) => {
         )}
         {!initialData.coverImage && !preview && (
           <Button
-            // onClick={coverImage.onOpen}
+            onClick={coverImage.onOpen}
             className="text-muted-foreground text-xs"
             variant="outline"
             size="sm"

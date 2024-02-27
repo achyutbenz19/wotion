@@ -61,3 +61,11 @@ export type IconPickerProps = {
   children: React.ReactNode;
   asChild?: boolean;
 };
+
+export type CoverImageStore = {
+  url?: string;
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  onReplace: (url: string) => void;
+};

@@ -75,3 +75,7 @@ export type EditorProps = {
   initialContent?: string;
   editable?: boolean;
 };
+
+export type PublishProps = {
+  initialData: Doc<"documents">;
+};

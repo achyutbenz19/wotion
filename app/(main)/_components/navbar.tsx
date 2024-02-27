@@ -8,6 +8,7 @@ import { NavbarProps } from "@/types";
 import { Title } from "./title";
 import { Banner } from "./banner";
 import { Menu } from "./menu";
+import { Publish } from "./publish";
 
 export const Navbar = ({ isCollapsed, onReset }: NavbarProps) => {
   const params = useParams();
@@ -43,7 +44,7 @@ export const Navbar = ({ isCollapsed, onReset }: NavbarProps) => {
         <div className="flex items-center justify-between w-full">
           <Title initialData={document} />
           <div className="flex items-center gap-x-2">
-            {/* <Publish initialData={document} /> */}
+            <Publish initialData={document} />
             <Menu documentId={document._id} />
           </div>
         </div>

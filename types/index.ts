@@ -69,3 +69,9 @@ export type CoverImageStore = {
   onClose: () => void;
   onReplace: (url: string) => void;
 };
+
+export type EditorProps = {
+  onChange: (value: string) => void;
+  initialContent?: string;
+  editable?: boolean;
+};

@@ -1,14 +1,18 @@
 "use client";
 import { ToolbarProps } from "@/types";
-import React from "react";
+import React, { ElementRef, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { ImageIcon, Smile, X } from "lucide-react";
 import { IconPicker } from "./emoji-picker";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import TextareaAutosize from "react-textarea-autosize";
 
 const Toolbar = ({ initialData, preview }: ToolbarProps) => {
   const update = useMutation(api.documents.update);
+  const inputRef = useRef<ElementRef<"textarea">>(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [value, setValue] = useState(initialData.title);
 
   const onIconSelect = (icon: string) => {
     update({
@@ -16,6 +20,33 @@ const Toolbar = ({ initialData, preview }: ToolbarProps) => {
       icon,
     });
   };
+
+  const enableInput = () => {
+    if (preview) return;
+    setIsEditing(true);
+    setTimeout(() => {
+      setValue(initialData.title);
+      inputRef.current?.focus();
+    }, 0);
+  };
+
+  const disableInput = () => setIsEditing(false);
+
+  const onInput = (value: string) => {
+    setValue(value);
+    update({
+      id: initialData._id,
+      title: value || "Untitled",
+    });
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key == "Enter") {
+      e.preventDefault();
+      disableInput();
+    }
+  };
+
   return (
     <div className="pl-[54px] group relative">
       {!!initialData.icon && !preview && (
@@ -63,7 +94,7 @@ const Toolbar = ({ initialData, preview }: ToolbarProps) => {
           </Button>
         )}
       </div>
-      {/* {isEditing && !preview ? (
+      {isEditing && !preview ? (
         <TextareaAutosize
           ref={inputRef}
           onBlur={disableInput}
@@ -79,7 +110,7 @@ const Toolbar = ({ initialData, preview }: ToolbarProps) => {
         >
           {initialData.title}
         </div>
-      )} */}
+      )}
     </div>
   );
 };
